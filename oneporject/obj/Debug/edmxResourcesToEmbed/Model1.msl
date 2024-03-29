@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище FactoryModelContainer" CdmEntityContainer="FactoryEntities">
+    <EntitySetMapping Name="Directors">
+      <EntityTypeMapping TypeName="FactoryModel.Directors">
+        <MappingFragment StoreEntitySet="Directors">
+          <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+          <ScalarProperty Name="Surname_Director" ColumnName="Surname_Director" />
+          <ScalarProperty Name="Name_Director" ColumnName="Name_Director" />
+          <ScalarProperty Name="Patronymic_Director" ColumnName="Patronymic_Director" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="FactoryModel.Employees">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+          <ScalarProperty Name="Surname_Employee" ColumnName="Surname_Employee" />
+          <ScalarProperty Name="Name_Employee" ColumnName="Name_Employee" />
+          <ScalarProperty Name="Patronymic_Employee" ColumnName="Patronymic_Employee" />
+          <ScalarProperty Name="Director_ID" ColumnName="Director_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

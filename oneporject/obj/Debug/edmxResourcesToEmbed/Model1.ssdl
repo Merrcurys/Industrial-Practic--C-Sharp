@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище FactoryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Directors">
+    <Key>
+      <PropertyRef Name="ID_Director" />
+    </Key>
+    <Property Name="ID_Director" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname_Director" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name_Director" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Patronymic_Director" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID_Employee" />
+    </Key>
+    <Property Name="ID_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname_Employee" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name_Employee" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Patronymic_Employee" Type="varchar" MaxLength="30" />
+    <Property Name="Director_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Employees__Direc__4BAC3F29">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="ID_Director" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Director_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище FactoryModelContainer">
+    <EntitySet Name="Directors" EntityType="Self.Directors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Employees__Direc__4BAC3F29" Association="Self.FK__Employees__Direc__4BAC3F29">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

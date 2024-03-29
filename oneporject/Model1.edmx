@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище FactoryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Directors">
+          <Key>
+            <PropertyRef Name="ID_Director" />
+          </Key>
+          <Property Name="ID_Director" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname_Director" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name_Director" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Patronymic_Director" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname_Employee" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name_Employee" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Patronymic_Employee" Type="varchar" MaxLength="30" />
+          <Property Name="Director_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Employees__Direc__4BAC3F29">
+          <End Role="Directors" Type="Self.Directors" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directors">
+              <PropertyRef Name="ID_Director" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Director_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FactoryModelContainer">
+          <EntitySet Name="Directors" EntityType="Self.Directors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Employees__Direc__4BAC3F29" Association="Self.FK__Employees__Direc__4BAC3F29">
+            <End Role="Directors" EntitySet="Directors" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Directors">
+          <Key>
+            <PropertyRef Name="ID_Director" />
+          </Key>
+          <Property Name="ID_Director" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname_Director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name_Director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic_Director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Direc__4BAC3F29" FromRole="Directors" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname_Employee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name_Employee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic_Employee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Director_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Directors" Relationship="Self.FK__Employees__Direc__4BAC3F29" FromRole="Employees" ToRole="Directors" />
+        </EntityType>
+        <Association Name="FK__Employees__Direc__4BAC3F29">
+          <End Role="Directors" Type="Self.Directors" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directors">
+              <PropertyRef Name="ID_Director" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Director_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FactoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Directors" EntityType="Self.Directors" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <AssociationSet Name="FK__Employees__Direc__4BAC3F29" Association="Self.FK__Employees__Direc__4BAC3F29">
+            <End Role="Directors" EntitySet="Directors" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FactoryModelContainer" CdmEntityContainer="FactoryEntities">
+          <EntitySetMapping Name="Directors">
+            <EntityTypeMapping TypeName="FactoryModel.Directors">
+              <MappingFragment StoreEntitySet="Directors">
+                <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+                <ScalarProperty Name="Surname_Director" ColumnName="Surname_Director" />
+                <ScalarProperty Name="Name_Director" ColumnName="Name_Director" />
+                <ScalarProperty Name="Patronymic_Director" ColumnName="Patronymic_Director" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="FactoryModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+                <ScalarProperty Name="Surname_Employee" ColumnName="Surname_Employee" />
+                <ScalarProperty Name="Name_Employee" ColumnName="Name_Employee" />
+                <ScalarProperty Name="Patronymic_Employee" ColumnName="Patronymic_Employee" />
+                <ScalarProperty Name="Director_ID" ColumnName="Director_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

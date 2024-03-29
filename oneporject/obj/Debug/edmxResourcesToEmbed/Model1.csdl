@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Directors">
+    <Key>
+      <PropertyRef Name="ID_Director" />
+    </Key>
+    <Property Name="ID_Director" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname_Director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name_Director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Patronymic_Director" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Direc__4BAC3F29" FromRole="Directors" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID_Employee" />
+    </Key>
+    <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname_Employee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name_Employee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Patronymic_Employee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Director_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Directors" Relationship="Self.FK__Employees__Direc__4BAC3F29" FromRole="Employees" ToRole="Directors" />
+  </EntityType>
+  <Association Name="FK__Employees__Direc__4BAC3F29">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="ID_Director" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Director_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FactoryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Directors" EntityType="Self.Directors" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" />
+    <AssociationSet Name="FK__Employees__Direc__4BAC3F29" Association="Self.FK__Employees__Direc__4BAC3F29">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
