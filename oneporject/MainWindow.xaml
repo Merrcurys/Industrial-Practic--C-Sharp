@@ -18,6 +18,7 @@
 
         <Button Content="Таблица Employees" Grid.Column="0" Click="Button_Employee" Background="#FF9CEF8B"/>
         <Button Content="Таблица Directors" Grid.Column="1" Click="Button_Director" Background="#FF9CEF8B"/>
+
         <Frame x:Name="PageFrame" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
     </Grid>
 

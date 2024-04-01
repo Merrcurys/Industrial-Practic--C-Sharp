@@ -21,20 +21,65 @@ namespace oneporject
     public partial class EmployeePage : Page
     {
         // EntityFramework
-        FactoryEntities db = new FactoryEntities(); // FactoryEntities
+        FactoryEntities db = new FactoryEntities(); // FactoryEntities имя бд
         public EmployeePage()
         {
             InitializeComponent();
 
-            employeDgr.ItemsSource = db.Employees.ToList();
+            employeDgr.ItemsSource = db.Employees.ToList(); // чтение и отображение бд в датагрид
             DirectorCbx.ItemsSource = db.Directors.ToList();
         }
 
         private void employeDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var strochka = employeDgr.SelectedItem as Employees;
-            NameTbx.Text = strochka.Surname_Employee;
-            DirectorCbx.SelectedItem = strochka.Directors;
+            if (employeDgr.SelectedItem != null)
+            {
+                var strochka = employeDgr.SelectedItem as Employees;
+                SurnameTbx.Text = strochka.Surname_Employee;
+                PatrTbx.Text = strochka.Patronymic_Employee;
+                NameTbx.Text = strochka.Name_Employee;
+                DirectorCbx.SelectedItem = strochka.Directors;
+            }
+        }
+
+        private void Button_Create(object sender, RoutedEventArgs e)
+        {
+            Employees empl = new Employees();
+            empl.Surname_Employee = SurnameTbx.Text;
+            empl.Patronymic_Employee = PatrTbx.Text;
+            empl.Name_Employee = NameTbx.Text;
+            empl.Director_ID = (DirectorCbx.SelectedItem as Directors).ID_Director;
+
+            db.Employees.Add(empl);
+
+            db.SaveChanges();
+            employeDgr.ItemsSource = db.Employees.ToList();
+        }
+
+        private void Button_Delete(object sender, RoutedEventArgs e)
+        {
+            if (employeDgr.SelectedItem != null)
+            {
+                db.Employees.Remove(employeDgr.SelectedItem as Employees);
+
+                db.SaveChanges();
+                employeDgr.ItemsSource = db.Employees.ToList();
+            }
+        }
+
+        private void Button_Update(object sender, RoutedEventArgs e)
+        {
+            if (employeDgr.SelectedItem != null)
+            {
+                var strochka = employeDgr.SelectedItem as Employees;
+                strochka.Surname_Employee = SurnameTbx.Text;
+                strochka.Patronymic_Employee = PatrTbx.Text;
+                strochka.Name_Employee = NameTbx.Text;
+                strochka.Directors = (Directors)DirectorCbx.SelectedItem;
+
+                db.SaveChanges();
+                employeDgr.ItemsSource = db.Employees.ToList();
+            }
         }
     }
 }

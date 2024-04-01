@@ -9,8 +9,16 @@
       Title="EmployeePage">
 
     <StackPanel>
+        <Button Content="Добавить" Background="#FF9CEF8B" Click="Button_Create"/>
+        <Button Content="Удалить" Background="#FF9CEF8B" Click="Button_Delete"/>
+        <Button Content="Изменить" Background="#FF9CEF8B" Click="Button_Update"/>
         <DataGrid CanUserAddRows="False" x:Name="employeDgr" SelectionChanged="employeDgr_SelectionChanged"/>
+        <TextBox x:Name="SurnameTbx"/>
+        <TextBox x:Name="PatrTbx"/>
         <TextBox x:Name="NameTbx"/>
         <ComboBox DisplayMemberPath="Name_Director" SelectedValuePath="ID_Director" x:Name="DirectorCbx"/>
     </StackPanel>
+
+
+   
 </Page>

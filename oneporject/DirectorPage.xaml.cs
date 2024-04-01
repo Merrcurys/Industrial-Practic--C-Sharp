@@ -23,7 +23,7 @@ namespace oneporject
     public partial class DirectorPage : Page
     {
         // DataSet
-        EmployeesTableAdapter employee = new EmployeesTableAdapter();
+        // EmployeesTableAdapter employee = new EmployeesTableAdapter();
         DirectorsTableAdapter director = new DirectorsTableAdapter();
         public DirectorPage()
         {
@@ -34,8 +34,42 @@ namespace oneporject
 
         private void directorDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var strochka = (directorDgr.SelectedItem as DataRowView).Row;
-            NameTbx.Text = strochka[2].ToString();
+            if (directorDgr.SelectedItem != null)
+            {
+                var strochka = (directorDgr.SelectedItem as DataRowView).Row;
+                SurnTbx.Text = strochka[1].ToString();
+                PatrTbx.Text = strochka[3].ToString();
+                NameTbx.Text = strochka[2].ToString();
+            }
+        }
+
+        private void Button_Create(object sender, RoutedEventArgs e)
+        {
+            if (directorDgr.SelectedItem != null)
+            {
+                director.InsertQuery(SurnTbx.Text, NameTbx.Text, PatrTbx.Text);
+                directorDgr.ItemsSource = director.GetData();
+            }
+        }
+
+        private void Button_Delete(object sender, RoutedEventArgs e)
+        {
+            if (directorDgr.SelectedItem != null)
+            {
+                object id = (directorDgr.SelectedItem as DataRowView).Row[0];
+                director.DeleteQuery(Convert.ToInt32(id));
+                directorDgr.ItemsSource = director.GetData();
+            }
+        }
+
+        private void Button_Update(object sender, RoutedEventArgs e)
+        {
+            if (directorDgr.SelectedItem != null)
+            {
+                object id = (directorDgr.SelectedItem as DataRowView).Row[0];
+                director.UpdateQuery(SurnTbx.Text, NameTbx.Text, PatrTbx.Text, Convert.ToInt32(id));
+                directorDgr.ItemsSource = director.GetData();
+            }
         }
     }
 }

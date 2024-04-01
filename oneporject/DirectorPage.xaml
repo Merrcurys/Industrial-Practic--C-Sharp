@@ -9,7 +9,12 @@
       Title="DirectorPage">
 
     <StackPanel>
+        <Button Content="Добавить"  Background="#FF9CEF8B" Click="Button_Create"/>
+        <Button Content="Удалить" Background="#FF9CEF8B" Click="Button_Delete"/>
+        <Button Content="Изменить" Background="#FF9CEF8B" Click="Button_Update"/>
         <DataGrid CanUserAddRows="False" x:Name="directorDgr" SelectionChanged="directorDgr_SelectionChanged"/>
+        <TextBox x:Name="SurnTbx"/>
+        <TextBox x:Name="PatrTbx"/>
         <TextBox x:Name="NameTbx"/>
     </StackPanel>
 </Page>
