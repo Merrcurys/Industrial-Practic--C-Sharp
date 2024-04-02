@@ -23,13 +23,13 @@ namespace oneporject
     public partial class DirectorPage : Page
     {
         // DataSet
-        // EmployeesTableAdapter employee = new EmployeesTableAdapter();
+        EmployeesTableAdapter employee = new EmployeesTableAdapter();
         DirectorsTableAdapter director = new DirectorsTableAdapter();
         public DirectorPage()
         {
             InitializeComponent();
 
-            directorDgr.ItemsSource = director.GetData();
+            directorDgr.ItemsSource = employee.GetFullInfo();
         }
 
         private void directorDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -37,9 +37,9 @@ namespace oneporject
             if (directorDgr.SelectedItem != null)
             {
                 var strochka = (directorDgr.SelectedItem as DataRowView).Row;
-                SurnTbx.Text = strochka[1].ToString();
-                PatrTbx.Text = strochka[3].ToString();
-                NameTbx.Text = strochka[2].ToString();
+                SurnTbx.Text = strochka[5].ToString();
+                PatrTbx.Text = strochka[6].ToString();
+                NameTbx.Text = strochka[7].ToString();
             }
         }
 
@@ -48,7 +48,7 @@ namespace oneporject
             if (directorDgr.SelectedItem != null)
             {
                 director.InsertQuery(SurnTbx.Text, NameTbx.Text, PatrTbx.Text);
-                directorDgr.ItemsSource = director.GetData();
+                directorDgr.ItemsSource = employee.GetFullInfo();
             }
         }
 
@@ -58,7 +58,7 @@ namespace oneporject
             {
                 object id = (directorDgr.SelectedItem as DataRowView).Row[0];
                 director.DeleteQuery(Convert.ToInt32(id));
-                directorDgr.ItemsSource = director.GetData();
+                directorDgr.ItemsSource = employee.GetFullInfo();
             }
         }
 
@@ -66,10 +66,17 @@ namespace oneporject
         {
             if (directorDgr.SelectedItem != null)
             {
-                object id = (directorDgr.SelectedItem as DataRowView).Row[0];
+                object id = (directorDgr.SelectedItem as DataRowView).Row[4];
                 director.UpdateQuery(SurnTbx.Text, NameTbx.Text, PatrTbx.Text, Convert.ToInt32(id));
-                directorDgr.ItemsSource = director.GetData();
+                directorDgr.ItemsSource = employee.GetFullInfo();
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            directorDgr.Columns[0].Visibility = Visibility.Collapsed;
+            directorDgr.Columns[4].Visibility = Visibility.Collapsed;
+        }
+
     }
 }

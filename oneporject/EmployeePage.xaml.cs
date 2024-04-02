@@ -21,7 +21,7 @@ namespace oneporject
     public partial class EmployeePage : Page
     {
         // EntityFramework
-        FactoryEntities db = new FactoryEntities(); // FactoryEntities имя бд
+        private FactoryEntities db = new FactoryEntities(); // FactoryEntities имя бд
         public EmployeePage()
         {
             InitializeComponent();

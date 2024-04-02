@@ -12,7 +12,14 @@
         <Button Content="Добавить" Background="#FF9CEF8B" Click="Button_Create"/>
         <Button Content="Удалить" Background="#FF9CEF8B" Click="Button_Delete"/>
         <Button Content="Изменить" Background="#FF9CEF8B" Click="Button_Update"/>
-        <DataGrid CanUserAddRows="False" x:Name="employeDgr" SelectionChanged="employeDgr_SelectionChanged"/>
+        <DataGrid CanUserAddRows="False" x:Name="employeDgr" SelectionChanged="employeDgr_SelectionChanged" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Surname_Employee}" Header="Фамилия работника"/>
+                <DataGridTextColumn Binding="{Binding Patronymic_Employee}" Header="Отчество работника"/>
+                <DataGridTextColumn Binding="{Binding Name_Employee}" Header="Имя работника"/>
+                <DataGridTextColumn Binding="{Binding Directors.Surname_Director}" Header="Фамилия директора"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <TextBox x:Name="SurnameTbx"/>
         <TextBox x:Name="PatrTbx"/>
         <TextBox x:Name="NameTbx"/>
