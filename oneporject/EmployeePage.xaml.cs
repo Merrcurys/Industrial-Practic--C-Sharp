@@ -28,6 +28,7 @@ namespace oneporject
 
             employeDgr.ItemsSource = db.Employees.ToList(); // чтение и отображение бд в датагрид
             DirectorCbx.ItemsSource = db.Directors.ToList();
+            FilterCbx.ItemsSource = db.Directors.ToList();
         }
 
         private void employeDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -80,6 +81,25 @@ namespace oneporject
                 db.SaveChanges();
                 employeDgr.ItemsSource = db.Employees.ToList();
             }
+        }
+
+        private void Button_Search(object sender, RoutedEventArgs e)
+        {
+            employeDgr.ItemsSource = db.Employees.ToList().Where(item => item.Surname_Employee.Contains(SearchTxt.Text));
+        }
+
+        private void FilterCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterCbx.SelectedItem != null)
+            {
+                var selected = FilterCbx.SelectedItem as Directors;
+                employeDgr.ItemsSource = db.Employees.ToList().Where(item => item.Directors == selected);
+            }
+        }
+
+        private void Button_Clear(object sender, RoutedEventArgs e)
+        {
+            employeDgr.ItemsSource = db.Employees.ToList();
         }
     }
 }

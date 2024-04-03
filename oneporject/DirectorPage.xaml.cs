@@ -30,6 +30,8 @@ namespace oneporject
             InitializeComponent();
 
             directorDgr.ItemsSource = employee.GetFullInfo();
+            FilterCbx.ItemsSource = director.GetData();
+            FilterCbx.DisplayMemberPath = "Name_Director";
         }
 
         private void directorDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -78,5 +80,25 @@ namespace oneporject
             directorDgr.Columns[4].Visibility = Visibility.Collapsed;
         }
 
+        private void Button_Search(object sender, RoutedEventArgs e)
+        {
+            directorDgr.ItemsSource = employee.SearchBySurname(SearchTxt.Text);
+        }
+
+        private void FilterCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterCbx.SelectedItem != null)
+            {
+                var id = (int)(FilterCbx.SelectedItem as DataRowView).Row[0];
+                directorDgr.ItemsSource = employee.FilterByDirector(id);
+            }
+        }
+
+        private void Button_Filter(object sender, RoutedEventArgs e)
+        {
+            directorDgr.ItemsSource = employee.GetFullInfo();
+            directorDgr.Columns[0].Visibility = Visibility.Collapsed;
+            directorDgr.Columns[4].Visibility = Visibility.Collapsed;
+        }
     }
 }
