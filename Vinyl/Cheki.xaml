@@ -1,0 +1,38 @@
+﻿<Page x:Class="Vinyl.Cheki"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vinyl"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Cheki">
+
+    <Grid Background="#FFABE57A">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.ColumnSpan="2" FontSize="16" x:Name="cheqCbx" SelectionChanged="cheqCbx_SelectionChanged" DisplayMemberPath = "Date"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Выгрузить данный чек" Click="Button_Unload" Background="#FFABE57A"/>
+        <DataGrid CanUserAddRows="False" Grid.Column="1" Grid.Row="1" x:Name="cheqDgr" AutoGenerateColumns="False" Background="#FF1C1C1C">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_Book}"/>
+                <DataGridTextColumn Header="Альбом" Binding="{Binding Name_Album}"/>
+                <DataGridTextColumn Binding="{Binding Condition_ID_Cover}" Header="Состояние конверта"/>
+                <DataGridTextColumn Binding="{Binding Condition_ID_Vinyl}" Header="Состояние винила"/>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Musicians.Name}"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="1" Margin="0,40,0,0" TextWrapping="Wrap" Text="ЧЕК" FontSize="24" VerticalAlignment="Top"/>
+        <TextBlock x:Name="emplTbx"  HorizontalAlignment="Center" Grid.Row="1" Margin="0,90,0,0" TextWrapping="Wrap" FontSize="20"  Text="Сотрудник" VerticalAlignment="Top"/>
+        <TextBlock x:Name="date" HorizontalAlignment="Center" Grid.Row="1" Margin="0,140,0,0" TextWrapping="Wrap" FontSize="20"  Text="Дата чека" VerticalAlignment="Top"/>
+        <TextBlock x:Name="total" HorizontalAlignment="Center" Grid.Row="1" Margin="0,190,0,0" TextWrapping="Wrap" FontSize="20"  Text="Сумма" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

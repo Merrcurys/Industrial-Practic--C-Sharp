@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="55b6618b8f754a5bac7c6ce421f1205c" Name="Diagram1">
+        <EntityTypeShape EntityType="VinylStoreModel.Accounts" Width="1.5" PointX="1.5" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Condition" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Genres" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Info_Orders" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Info_Products" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Musicians" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Products" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Roles" Width="1.5" PointX="1.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Type" Width="1.5" PointX="1.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VinylStoreModel.Users" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="VinylStoreModel.FK__Users__Account_I__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Products__Condit__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Products__Condit__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Products__Genre___59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Info_Orde__User___02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Info_Prod__Info___05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Info_Prod__Produ__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Musicians__Type___4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Products__Musici__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="VinylStoreModel.FK__Users__Role_ID__619B8048" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

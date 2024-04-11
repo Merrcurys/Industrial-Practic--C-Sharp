@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище VinylStoreModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="ID_Account" />
+    </Key>
+    <Property Name="ID_Account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Condition">
+    <Key>
+      <PropertyRef Name="ID_Condition" />
+    </Key>
+    <Property Name="ID_Condition" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="Designation" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="ID_Genre" />
+    </Key>
+    <Property Name="ID_Genre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Genre" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Info_Orders">
+    <Key>
+      <PropertyRef Name="ID_Info_Orders" />
+    </Key>
+    <Property Name="ID_Info_Orders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Payment" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Change" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="User_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Info_Products">
+    <Key>
+      <PropertyRef Name="ID_Info_Products" />
+    </Key>
+    <Property Name="ID_Info_Products" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Info_Orders_ID" Type="int" Nullable="false" />
+    <Property Name="Product_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Musicians">
+    <Key>
+      <PropertyRef Name="ID_Musician" />
+    </Key>
+    <Property Name="ID_Musician" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Type_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID_Products" />
+    </Key>
+    <Property Name="ID_Products" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_Album" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Musician_ID" Type="int" Nullable="false" />
+    <Property Name="Condition_ID_Cover" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="Condition_ID_Vinyl" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="Genre_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID_Role" />
+    </Key>
+    <Property Name="ID_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="ID_Type" />
+    </Key>
+    <Property Name="ID_Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Patronymic" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Role_ID" Type="int" Nullable="false" />
+    <Property Name="Account_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Info_Orde__User___14270015">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Info_Orders" Type="Self.Info_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Info_Orders">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Info_Prod__Info___17036CC0">
+    <End Role="Info_Orders" Type="Self.Info_Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Info_Products" Type="Self.Info_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Info_Orders">
+        <PropertyRef Name="ID_Info_Orders" />
+      </Principal>
+      <Dependent Role="Info_Products">
+        <PropertyRef Name="Info_Orders_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Info_Prod__Produ__17F790F9">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Info_Products" Type="Self.Info_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID_Products" />
+      </Principal>
+      <Dependent Role="Info_Products">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Musicians__Type___4D94879B">
+    <End Role="Type" Type="Self.Type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Musicians" Type="Self.Musicians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="ID_Type" />
+      </Principal>
+      <Dependent Role="Musicians">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Condit__5812160E">
+    <End Role="Condition" Type="Self.Condition" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Condition">
+        <PropertyRef Name="ID_Condition" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Condition_ID_Cover" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Condit__59063A47">
+    <End Role="Condition" Type="Self.Condition" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Condition">
+        <PropertyRef Name="ID_Condition" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Condition_ID_Vinyl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Genre___59FA5E80">
+    <End Role="Genres" Type="Self.Genres" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="ID_Genre" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Genre_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Musici__571DF1D5">
+    <End Role="Musicians" Type="Self.Musicians" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musicians">
+        <PropertyRef Name="ID_Musician" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Musician_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__Account_I__628FA481">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="ID_Account" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__Role_ID__619B8048">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID_Role" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище VinylStoreModelContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Condition" EntityType="Self.Condition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Info_Orders" EntityType="Self.Info_Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Info_Products" EntityType="Self.Info_Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Musicians" EntityType="Self.Musicians" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Info_Orde__User___14270015" Association="Self.FK__Info_Orde__User___14270015">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Info_Orders" EntitySet="Info_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Info_Prod__Info___17036CC0" Association="Self.FK__Info_Prod__Info___17036CC0">
+      <End Role="Info_Orders" EntitySet="Info_Orders" />
+      <End Role="Info_Products" EntitySet="Info_Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Info_Prod__Produ__17F790F9" Association="Self.FK__Info_Prod__Produ__17F790F9">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Info_Products" EntitySet="Info_Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Musicians__Type___4D94879B" Association="Self.FK__Musicians__Type___4D94879B">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Musicians" EntitySet="Musicians" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Condit__5812160E" Association="Self.FK__Products__Condit__5812160E">
+      <End Role="Condition" EntitySet="Condition" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Condit__59063A47" Association="Self.FK__Products__Condit__59063A47">
+      <End Role="Condition" EntitySet="Condition" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Genre___59FA5E80" Association="Self.FK__Products__Genre___59FA5E80">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Musici__571DF1D5" Association="Self.FK__Products__Musici__571DF1D5">
+      <End Role="Musicians" EntitySet="Musicians" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__Account_I__628FA481" Association="Self.FK__Users__Account_I__628FA481">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__Role_ID__619B8048" Association="Self.FK__Users__Role_ID__619B8048">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

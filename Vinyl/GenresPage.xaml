@@ -1,0 +1,40 @@
+﻿<Page x:Class="Vinyl.GenresPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vinyl"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GenresPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DataGrid CanUserAddRows="False" x:Name="GenreDgr" AutoGenerateColumns="False" Grid.RowSpan="5" Background="#FF1C1C1C" BorderBrush="Transparent" SelectionChanged="GenreDgr_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Genre}" Header="Роль"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label FontSize="18" Foreground="#FFABE57A" Content="Данные для заполнения" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+        <TextBox x:Name="GenreTbx" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Background="#FF1C1C1C" Foreground="#FFABE57A" SelectionBrush="#FF9CEF8B"/>
+
+        <Button Content="Добавить" Background="#FF9CEF8B" Grid.Column="1" Grid.Row="5" Click="Button_Create"/>
+        <Button Content="Изменить" Background="#FF9CEF8B" Grid.Column="2" Grid.Row="5" Click="Button_Update"/>
+        <Button Content="Удалить" Background="#FF9CEF8B" Grid.Column="3" Grid.Row="5" Click="Button_Delete"/>
+        <Button Content="Импортировать данные" Background="#FFF1BE77" Grid.Row="8" Click="Button_Import"/>
+    </Grid>
+</Page>

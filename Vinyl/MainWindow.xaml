@@ -1,0 +1,18 @@
+﻿<Window x:Class="Vinyl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vinyl"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="363" Width="480" Background="#FF1C1C1C" ResizeMode="NoResize">
+    <Grid>
+        <Button Content="Авторизация" HorizontalAlignment="Center" Height="44" Margin="0,265,0,0" VerticalAlignment="Top" Width="400" Background="#FFABE57A" BorderBrush="#FF1C1C1C" Click="AuthorizationBt_Click"/>
+        <TextBox x:Name="LoginTbx" HorizontalAlignment="Center" Margin="0,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+        <PasswordBox x:Name="PasswordTbx" HorizontalAlignment="Center" Margin="0,226,0,0" VerticalAlignment="Top" Width="400"/>
+        <Label FontSize="18" Foreground="#FFABE57A" Content="АВТОРИЗАЦИЯ" HorizontalAlignment="Center" Margin="0,51,0,0" VerticalAlignment="Top" Width="142"/>
+        <Label FontSize="12" Foreground="#FFABE57A" Content="Логин" HorizontalAlignment="Left" Margin="40,149,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label FontSize="12" Foreground="#FFABE57A" Content="Пароль" HorizontalAlignment="Left" Margin="40,200,0,0" VerticalAlignment="Top" Width="55"/>
+
+    </Grid>
+</Window>

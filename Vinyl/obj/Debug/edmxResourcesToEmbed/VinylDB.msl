@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище VinylStoreModelContainer" CdmEntityContainer="VinylStoreEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="VinylStoreModel.Accounts">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="ID_Account" ColumnName="ID_Account" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Condition">
+      <EntityTypeMapping TypeName="VinylStoreModel.Condition">
+        <MappingFragment StoreEntitySet="Condition">
+          <ScalarProperty Name="ID_Condition" ColumnName="ID_Condition" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genres">
+      <EntityTypeMapping TypeName="VinylStoreModel.Genres">
+        <MappingFragment StoreEntitySet="Genres">
+          <ScalarProperty Name="ID_Genre" ColumnName="ID_Genre" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Info_Orders">
+      <EntityTypeMapping TypeName="VinylStoreModel.Info_Orders">
+        <MappingFragment StoreEntitySet="Info_Orders">
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Change" ColumnName="Change" />
+          <ScalarProperty Name="ID_Info_Orders" ColumnName="ID_Info_Orders" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Info_Products">
+      <EntityTypeMapping TypeName="VinylStoreModel.Info_Products">
+        <MappingFragment StoreEntitySet="Info_Products">
+          <ScalarProperty Name="ID_Info_Products" ColumnName="ID_Info_Products" />
+          <ScalarProperty Name="Info_Orders_ID" ColumnName="Info_Orders_ID" />
+          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musicians">
+      <EntityTypeMapping TypeName="VinylStoreModel.Musicians">
+        <MappingFragment StoreEntitySet="Musicians">
+          <ScalarProperty Name="ID_Musician" ColumnName="ID_Musician" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="VinylStoreModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ID_Products" ColumnName="ID_Products" />
+          <ScalarProperty Name="Name_Album" ColumnName="Name_Album" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Musician_ID" ColumnName="Musician_ID" />
+          <ScalarProperty Name="Condition_ID_Cover" ColumnName="Condition_ID_Cover" />
+          <ScalarProperty Name="Condition_ID_Vinyl" ColumnName="Condition_ID_Vinyl" />
+          <ScalarProperty Name="Genre_ID" ColumnName="Genre_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="VinylStoreModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="VinylStoreModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type">
+      <EntityTypeMapping TypeName="VinylStoreModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="ID_Type" ColumnName="ID_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="VinylStoreModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+          <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
